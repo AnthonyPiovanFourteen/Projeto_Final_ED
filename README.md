@@ -122,7 +122,7 @@ import datetime
       * from collections import deque: Esta linha importa a estrutura de dados deque da biblioteca collections do Python. foi escolhida e selecionada para a lista_espera porque permite realizar operações de adição (append) e remoção (popleft). Isso a torna ideal para implementar uma fila (FIFO - First-In, First-Out), que é o esperado para uma lista de espera de livros, onde o primeiro usuário a entrar na fila é o primeiro a ser atendido.
       *       * import datetime: Este módulo é essencial para manipular datas, Dentro do contexto da biblioteca, ele é usado para registrar a data em que um livro é emprestado (realizar_emprestimo) e assim calcular a data de devolução prevista.
 
-#2. Estruturas de Dados Globais 💾
+# 2. Estruturas de Dados Globais 💾
 ```
 catalogo_livros = {}
 cadastro_usuarios = {}
