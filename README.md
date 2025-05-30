@@ -141,13 +141,13 @@ lista_espera = {}
 ```
  Essas estruturas são definidas globalmente para que possam ser acessadas e modificadas por todas as funções do sistema.
  
-## catalogo_livros = {}: Um dicionário que é usado para o catálogo, oferecendo acesso rápido aos detalhes de um livro, usando o ISBN como chave única. Isso é eficiente para adicionar, remover e buscar informações específicas de um livro. Para cada ISBN, os detalhes do livro (como título e autor) são guardados em um dicionário separado. Isso ajuda a manter os dados organizados.
+catalogo_livros = {}: Um dicionário que é usado para o catálogo, oferecendo acesso rápido aos detalhes de um livro, usando o ISBN como chave única. Isso é eficiente para adicionar, remover e buscar informações específicas de um livro. Para cada ISBN, os detalhes do livro (como título e autor) são guardados em um dicionário separado. Isso ajuda a manter os dados organizados.
 
-## cadastro_usuarios = {}: Dicionário parecido com o de catálogo de livros, só que agora aplicado para os usuários, usando um identificador único, o CPF como chave.
+cadastro_usuarios = {}: Dicionário parecido com o de catálogo de livros, só que agora aplicado para os usuários, usando um identificador único, o CPF como chave.
 
-## registros_emprestimos = []: Uma lista que é usada para armazenar os registros de empréstimos. Cada empréstimo é um evento que pode ser adicionado sequencialmente. Cada item na lista é um dicionário contendo os detalhes de um empréstimo (ISBN do livro, ID do usuário, datas, status). A adição de novos empréstimos é simples (append).
+registros_emprestimos = []: Uma lista que é usada para armazenar os registros de empréstimos. Cada empréstimo é um evento que pode ser adicionado sequencialmente. Cada item na lista é um dicionário contendo os detalhes de um empréstimo (ISBN do livro, ID do usuário, datas, status). A adição de novos empréstimos é simples (append).
 
-## lista_espera = {}: Um dicionário que é usado para mapear um ISBN (chave) para uma fila de usuários (deque), que estão esperando por aquele livro. Isso permite que cada livro tenha sua própria fila de espera independente. O deque é usado como valor para garantir a ordem FIFO e a eficiência das operações de enfileirar e desenfileirar usuários.
+lista_espera = {}: Um dicionário que é usado para mapear um ISBN (chave) para uma fila de usuários (deque), que estão esperando por aquele livro. Isso permite que cada livro tenha sua própria fila de espera independente. O deque é usado como valor para garantir a ordem FIFO e a eficiência das operações de enfileirar e desenfileirar usuários.
 
 # 3. Função Principal de Interação (menu_principal 🖥️
 Esta função serve como o ponto central de controle da interface com o usuário (CLI).
