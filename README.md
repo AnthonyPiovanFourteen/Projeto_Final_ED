@@ -65,15 +65,16 @@ Loop while True para manter o menu ativo:
 * Exibe o cabeçalho e as opções do menu principal (1-8 e 0 para Sair).
 * Solicita a opcao ao usuário.
 * Bloco match opcao: para direcionar a ação:
-
-   * case '1': chama adicionar_livro()
-   * case '2': chama remover_livro()
-   * case '3': chama buscar_livro()
-   * case '4': chama exibir_catalogo()
-   * case '5': chama adicionar_usuario()
-   * case '6': chama realizar_emprestimo()
-   * case '7': chama registrar_devolucao()
-   * case '8': chama listar_emprestimos()
+```
+       print(" 1.  ➕  Adicionar Livro")
+        print(" 2.  ➖  Remover Livro")
+        print(" 3.  🔍  Buscar Livro")
+        print(" 4.  📖  Catálogo de Livros")
+        print(" 5.  👤  Adicionar Usuário")
+        print(" 6.  📥  Emprestar Livro")
+        print(" 7.  📤  Devolver Livro")
+        print(" 8.  📚  Livros Emprestados")
+```
    * case '0': imprime mensagem de saída e executa break para sair do loop.
    * case _: imprime mensagem de opção inválida.
    * Condicional if opcao != '0': para pausar antes de mostrar o menu novamente.
