@@ -115,20 +115,20 @@ A funcionalidade de registrar a devolução de um livro gerencia o retorno de um
 Para exibir uma relação dos livros que estão emprestados, o sistema exibe uma lista formatada de todos os empréstimos que constam com status "ativo" na lista registros_emprestimos. Para cada empréstimo que tem seu status ativo, é exibido o ISBN do livro, seu título, o CPF do usuário que o emprestou, o nome desse usuário e a data prevista que deve ser realizada a devolução. Se não houver nenhum livro emprestado ativamente no momento, o sistema informa essa situação ao usuário e retorna ao menu de início.
 #Justificativa da estrutura
 ## 1. Importações 📦
-``bash
+```
 from collections import deque
 import datetime
-``
+```
       * from collections import deque: Esta linha importa a estrutura de dados deque da biblioteca collections do Python. foi escolhida e selecionada para a lista_espera porque permite realizar operações de adição (append) e remoção (popleft). Isso a torna ideal para implementar uma fila (FIFO - First-In, First-Out), que é o esperado para uma lista de espera de livros, onde o primeiro usuário a entrar na fila é o primeiro a ser atendido.
       *       * import datetime: Este módulo é essencial para manipular datas, Dentro do contexto da biblioteca, ele é usado para registrar a data em que um livro é emprestado (realizar_emprestimo) e assim calcular a data de devolução prevista.
 
 ##2. Estruturas de Dados Globais 💾
-``bash
+```
 catalogo_livros = {}
 cadastro_usuarios = {}
 registros_emprestimos = []
 lista_espera = {}
-``
+```
  Essas estruturas são definidas globalmente para que possam ser acessadas e modificadas por todas as funções do sistema. 
 catalogo_livros = {}: Um dicionário que é usado para o catálogo, oferecendo acesso rápido aos detalhes de um livro, usando o ISBN como chave única. Isso é eficiente para adicionar, remover e buscar informações específicas de um livro. Para cada ISBN, os detalhes do livro (como título e autor) são guardados em um dicionário separado. Isso ajuda a manter os dados organizados.
 cadastro_usuarios = {}: Dicionário parecido com o de catálogo de livros, só que agora aplicado para os usuários, usando um identificador único, o CPF como chave. Isso 
