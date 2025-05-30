@@ -60,8 +60,8 @@ Após executar o script, você verá o menu principal do sistema no seu terminal
 * cadastro_usuarios = {}
 * registros_emprestimos = []
 * lista_espera = {}
-* 
-#3. Função Principal de Interação (menu_principal) 🖥️
+  
+# 3. Função Principal de Interação (menu_principal) 🖥️
 Loop while True para manter o menu ativo:
 * Exibe o cabeçalho e as opções do menu principal (1-8 e 0 para Sair).
 * Solicita a opcao ao usuário.
