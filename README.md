@@ -15,7 +15,7 @@ Para executar este código, você precisará ter:
 * **Python 3.10 ou superior instalado.** 
 
 
-## Como Executar o Código
+# Como Executar o Código
 Siga os passos abaixo para executar o sistema de gerenciamento de biblioteca:
 
 
@@ -47,20 +47,20 @@ Siga os passos abaixo para executar o sistema de gerenciamento de biblioteca:
         ```
         python biblioteca_cli.py
         ```
-## Como Usar o Sistema
+# Como Usar o Sistema
 Após executar o script, você verá o menu principal do sistema no seu terminal:
 
 
 # Estrutura de dados
-## 1. Importações 📦
+# 1. Importações 📦
 * from collections import deque
 * import datetime
-##2. Estruturas de Dados Globais 💾
+#2. Estruturas de Dados Globais 💾
 * catalogo_livros = {}
 * cadastro_usuarios = {}
 * registros_emprestimos = []
 * lista_espera = {}
-##3. Função Principal de Interação (menu_principal) 🖥️
+#3. Função Principal de Interação (menu_principal) 🖥️
 Loop while True para manter o menu ativo:
 * Exibe o cabeçalho e as opções do menu principal (1-8 e 0 para Sair).
 * Solicita a opcao ao usuário.
@@ -80,7 +80,7 @@ Loop while True para manter o menu ativo:
    * Condicional if opcao != '0': para pausar antes de mostrar o menu novamente.
 
 
-## 4. Definições das Funções de Funcionalidade 🛠️
+# 4. Definições das Funções de Funcionalidade 🛠️
    * função adicionar_livro():
    * função remover_livro():
    * função buscar_livro():
@@ -96,25 +96,25 @@ Loop while True para manter o menu ativo:
 
 
 # Principais recursos
-## O sistema CLI tem as seguintes funcionalidades:
-## Adicionar novos livros ao catálogo;
+# O sistema CLI tem as seguintes funcionalidades:
+# Adicionar novos livros ao catálogo;
 A primeira função apresentada no sistema, que é adicionar um livro ao catálogo, permite ao usuário inserir os dados de um novo livro, com ISBN, título, autor, gênero e o número de cópias. O sistema verifica se o ISBN fornecido já existe no catálogo para evitar duplicidade e também verifica se os inputs obrigatórios do usuário não foram deixados em branco. Também, é feita uma validação para garantir que o número de cópias inserido seja um valor positivo. Se as informações passarem por todas as verificações, o livro é armazenado na estrutura de dados catalogo_livros, juntamente com o registro das cópias totais.
-## Remover livros existentes do catálogo.
+# Remover livros existentes do catálogo.
 Para a remoção de um livro do catálogo, o sistema solicita ao usuário o ISBN do livro que se deseja excluir. Em seguida, é verificado se um livro com o ISBN existe. é realizada também uma verificação em  registros_emprestimos , que visa impedir a remoção do livro, caso ele esteja atualmente emprestado e com status "ativo". Se o livro puder ser removido e não estiver com ninguem, ele é efetivamente retirado do catalogo_livros e, caso conste em alguma lista_espera, sua entrada também é eliminada dessa fila.
-## Buscar livros por título, autor, gênero ou ISBN.
+# Buscar livros por título, autor, gênero ou ISBN.
 A opção de buscar um livro no catálogo oferece ao usuário diferentes maneiras de encontrar um livro, apresentando um sub-menu com while, para que se escolha o critério de busca, que pode ser Título, Autor, Gênero ou ISBN. Quando a busca é realizada por Título, Autor ou Gênero, o sistema solicita ao usuário o input e efetua uma verificação do termo, exibindo todos os que satisfazem a condição. Se a busca for por ISBN, o sistema solicita o número e realiza uma busca exata no catálogo. Se o input não corresponder aos dados registrados, o sistema informa ao usuário que não foi possível localizar.
-## Exibir o catálogo completo de livros.
+# Exibir o catálogo completo de livros.
 Na exibição do catálogo de todos os livros, o usuário pode visualizar todos os livros que estão presentes no catalogo_livros. Para cada livro, são exibidos o ISBN, título, autor, gênero, juntamente com o número de cópias disponíveis em relação ao número total de cópias. O sistema também mostra se há usuários na lista_espera para algum dos livros listados, oferecendo uma visão geral do acervo. Caso a biblioteca não possua nenhum livro cadastrado, uma mensagem indicando que ela está vazia é apresentada e o usuário retornará ao menu inicial.
-## Adicionar novos usuários ao sistema.
+# Adicionar novos usuários ao sistema.
 Dentro do sistema é possível adicionar novos usuários, permitindo a inclusão dos mesmo dentro do gerenciador da biblioteca. Para registro, solicita um CPF, que é utilizado como identificador único do usuário, além do seu nome e endereço de email. O sistema realiza verificações para garantir que o CPF informado ainda não esteja cadastrado, evitando duplicidade de usuários, e também valida se os inputs obrigatórios de CPF, nome e email foram devidamente preenchidos. Após a validação bem-sucedida, os dados do novo usuário são armazenados no dicionário cadastro_usuarios.
-## Realizar o empréstimo de livros para usuários cadastrados.
+# Realizar o empréstimo de livros para usuários cadastrados.
 Na realização de um empréstimo de um livro, o sistema solicita o ISBN do livro que se deseja emprestar e o CPF do usuário que está fazendo o empréstimo. De início, são feitas duas verificações, a primeira para confirmar a existência do livro no catálogo, e a segunda do usuário no cadastro. Além disso, é checado antes se há cópias disponíveis do livro para empréstimo. Se todas as condições forem aprovadas, o número de cópias disponíveis do livro é reduzido. Um registro do empréstimo é adicionado à lista registros_emprestimos, contendo o ISBN, o CPF do usuário, a data do empréstimo, a data de devolução prevista (10 dias a partir da data atual) e o status "ativo". Caso o livro não esteja disponível no momento, o sistema oferece ao usuário a opção de entrar na lista_espera para aquele ISBN, e se o usuário aceitar e ainda não estiver na fila, ele é adicionado à estrutura deque correspondente.
-## Registrar a devolução de livros.
+# Registrar a devolução de livros.
 A funcionalidade de registrar a devolução de um livro gerencia o retorno de um livro emprestado ao catalogo. O sistema solicita o input ao usuário do ISBN do livro devolvido e o CPF do usuário que o está devolvendo. Com esses dados, ele procura na lista registros_emprestimos por um empréstimo com status ativo que corresponde aos dados fornecidos. Se algum empréstimo ativo for encontrado com informações compatíveis, o número de cópias disponíveis do livro é alterado no catalogo_livros, e o status daquele registro de empréstimo é alterado para "devolvido", podendo ser emprestado novamente. Caso tenha usuários na lista_espera para o livro que acabou de ser devolvido, o sistema notifica o próximo usuário da fila sobre a disponibilidade do livro e o remove da espera. Se nenhum empréstimo ativo compatível for localizado, uma mensagem informativa é exibida e o usuário retorna ao menu de início
-## Listar todos os livros que estão atualmente emprestados.
+# Listar todos os livros que estão atualmente emprestados.
 Para exibir uma relação dos livros que estão emprestados, o sistema exibe uma lista formatada de todos os empréstimos que constam com status "ativo" na lista registros_emprestimos. Para cada empréstimo que tem seu status ativo, é exibido o ISBN do livro, seu título, o CPF do usuário que o emprestou, o nome desse usuário e a data prevista que deve ser realizada a devolução. Se não houver nenhum livro emprestado ativamente no momento, o sistema informa essa situação ao usuário e retorna ao menu de início.
 #Justificativa da estrutura
-## 1. Importações 📦
+# 1. Importações 📦
 ```
 from collections import deque
 import datetime
@@ -122,7 +122,7 @@ import datetime
       * from collections import deque: Esta linha importa a estrutura de dados deque da biblioteca collections do Python. foi escolhida e selecionada para a lista_espera porque permite realizar operações de adição (append) e remoção (popleft). Isso a torna ideal para implementar uma fila (FIFO - First-In, First-Out), que é o esperado para uma lista de espera de livros, onde o primeiro usuário a entrar na fila é o primeiro a ser atendido.
       *       * import datetime: Este módulo é essencial para manipular datas, Dentro do contexto da biblioteca, ele é usado para registrar a data em que um livro é emprestado (realizar_emprestimo) e assim calcular a data de devolução prevista.
 
-##2. Estruturas de Dados Globais 💾
+#2. Estruturas de Dados Globais 💾
 ```
 catalogo_livros = {}
 cadastro_usuarios = {}
@@ -135,7 +135,7 @@ cadastro_usuarios = {}: Dicionário parecido com o de catálogo de livros, só q
 registros_emprestimos = []: Uma lista que é usada para armazenar os registros de empréstimos. Cada empréstimo é um evento que pode ser adicionado sequencialmente. Cada item na lista é um dicionário contendo os detalhes de um empréstimo (ISBN do livro, ID do usuário, datas, status). A adição de novos empréstimos é simples (append).
 lista_espera = {}: Um dicionário que é usado para mapear um ISBN (chave) para uma fila de usuários (deque), que estão esperando por aquele livro. Isso permite que cada livro tenha sua própria fila de espera independente. O deque é usado como valor para garantir a ordem FIFO e a eficiência das operações de enfileirar e desenfileirar usuários.
 
-##3. Função Principal de Interação (menu_principal 🖥️
+#3. Função Principal de Interação (menu_principal 🖥️
 Esta função serve como o ponto central de controle da interface com o usuário (CLI).
       * Loop while True: Garantindo que o menu seja exibido continuamente, permitindo que o usuário realize múltiplas operações sem que o programa termine após cada ação.
       * Exibição do Menu: Apresenta de forma clara as funcionalidades disponíveis, guiando o usuário.
@@ -144,7 +144,7 @@ Esta função serve como o ponto central de controle da interface com o usuário
       * Pausa para continuar: Melhora a usabilidade, permitindo que o usuário leia a saída de uma operação antes que o menu seja reexibido.
 
 
-## 4. Definições das Funções de Funcionalidade 🛠️
+# 4. Definições das Funções de Funcionalidade 🛠️
 Função adicionar_livro():
       * Para que serve o catalogo_livros (dicionário) aqui? Usamos o catalogo_livros como um grande arquivo de fichas, onde cada livro tem sua "ficha" identificada pelo ISBN. Quando você adiciona um livro, é como criar uma nova ficha nesse arquivo. O dicionário é eficiente para esse tipo de operação por que é muito rápido verificar se um ISBN já foi cadastrado antes de adicionar um novo.
 Função remover_livro():
