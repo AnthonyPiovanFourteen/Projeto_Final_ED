@@ -55,7 +55,8 @@ Após executar o script, você verá o menu principal do sistema no seu terminal
 # 1. Importações 📦
 * from collections import deque
 * import datetime
-#2. Estruturas de Dados Globais 💾
+  
+# 2. Estruturas de Dados Globais 💾
 * catalogo_livros = {}
 * cadastro_usuarios = {}
 * registros_emprestimos = []
