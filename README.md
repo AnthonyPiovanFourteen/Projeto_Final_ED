@@ -135,7 +135,7 @@ cadastro_usuarios = {}: Dicionário parecido com o de catálogo de livros, só q
 registros_emprestimos = []: Uma lista que é usada para armazenar os registros de empréstimos. Cada empréstimo é um evento que pode ser adicionado sequencialmente. Cada item na lista é um dicionário contendo os detalhes de um empréstimo (ISBN do livro, ID do usuário, datas, status). A adição de novos empréstimos é simples (append).
 lista_espera = {}: Um dicionário que é usado para mapear um ISBN (chave) para uma fila de usuários (deque), que estão esperando por aquele livro. Isso permite que cada livro tenha sua própria fila de espera independente. O deque é usado como valor para garantir a ordem FIFO e a eficiência das operações de enfileirar e desenfileirar usuários.
 
-#3. Função Principal de Interação (menu_principal 🖥️
+# 3. Função Principal de Interação (menu_principal 🖥️
 Esta função serve como o ponto central de controle da interface com o usuário (CLI).
       * Loop while True: Garantindo que o menu seja exibido continuamente, permitindo que o usuário realize múltiplas operações sem que o programa termine após cada ação.
       * Exibição do Menu: Apresenta de forma clara as funcionalidades disponíveis, guiando o usuário.
