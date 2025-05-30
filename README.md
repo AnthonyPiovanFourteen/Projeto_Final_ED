@@ -163,41 +163,44 @@ Esta função serve como o ponto central de controle da interface com o usuário
       * Para que serve o catalogo_livros (dicionário) aqui? Usamos o catalogo_livros como um grande arquivo de fichas, onde cada livro tem sua "ficha" identificada pelo ISBN. Quando você adiciona um livro, é como criar uma nova ficha nesse arquivo. O dicionário é eficiente para esse tipo de operação por que é muito rápido verificar se um ISBN já foi cadastrado antes de adicionar um novo.
       
 # Função remover_livro():
-      * Como as estruturas ajudam a remover um livro?
-      * O catalogo_livros (dicionário) é usado como nosso índice principal; achar e tirar a "ficha" de um livro usando o ISBN.
-      * A registros_emprestimos (lista) guarda o histórico de todas as vezes que livros foram emprestados. Precisamos olhar essa lista, item por item (cada item é um dicionário com dados do empréstimo), para ter certeza que o livro que queremos remover não está atualmente com alguém.
-      * A lista_espera (dicionário) guarda as filas de pessoas esperando por cada livro. Se o livro é removido do catálogo, sua fila de espera correspondente também precisa ser eliminada para não manter pessoas esperando por algo que não existe mais.
+ ## Como as estruturas ajudam a remover um livro?
+ O catalogo_livros (dicionário) é usado como nosso índice principal; achar e tirar a "ficha" de um livro usando o ISBN.
+A registros_emprestimos (lista) guarda o histórico de todas as vezes que livros foram emprestados. Precisamos olhar essa lista, item por item (cada item é um dicionário com dados do empréstimo), para ter certeza que o livro que queremos remover não está atualmente com alguém.
+A lista_espera (dicionário) guarda as filas de pessoas esperando por cada livro. Se o livro é removido do catálogo, sua fila de espera correspondente também precisa ser eliminada para não manter pessoas esperando por algo que não existe mais.
       
 # Função buscar_livro():
-      * Como o catalogo_livros (dicionário) é usado na busca? Para encontrar um livro, a função olha todas as "fichas" (detalhes de cada livro) dentro do catalogo_livros. Se você escolhe buscar pelo ISBN, o sistema pode, em alguns casos, ir direto na "ficha" correta se o ISBN for exato. Para outros critérios como título, autor ou gênero, a função compara o que você digitou com os detalhes escritos em cada "ficha" para ver se combinam.
+## Como o catalogo_livros (dicionário) é usado na busca? 
+Para encontrar um livro, a função olha todas as "fichas" (detalhes de cada livro) dentro do catalogo_livros. Se você escolhe buscar pelo ISBN, o sistema pode, em alguns casos, ir direto na "ficha" correta se o ISBN for exato. Para outros critérios como título, autor ou gênero, a função compara o que você digitou com os detalhes escritos em cada "ficha" para ver se combinam.
       
 # Função exibir_catalogo():
-      * Como as estruturas mostram o catálogo?
-      * Para mostrar todos os livros, a função pega cada "ficha" (ISBN e seus detalhes) do catalogo_livros e exibe as informações de forma organizada.
-      * Ela também consulta a lista_espera (dicionário) para cada livro listado, para verificar e mostrar se tem gente esperando por ele.
+## Como as estruturas mostram o catálogo?
+Para mostrar todos os livros, a função pega cada "ficha" (ISBN e seus detalhes) do catalogo_livros e exibe as informações de forma organizada.
+Ela também consulta a lista_espera (dicionário) para cada livro listado, para verificar e mostrar se tem gente esperando por ele.
       
 # Função adicionar_usuario():
-      * Para que serve o cadastro_usuarios (dicionário) aqui? Esta estrutura funciona de forma parecida com o catalogo_livros, mas para pessoas. O cadastro_usuarios guarda uma "ficha" para cada usuário, identificada pelo CPF. Usar um dicionário torna fácil e rápido adicionar novos usuários e verificar se um CPF já existe no sistema antes de cadastrar.
+## Para que serve o cadastro_usuarios (dicionário) aqui?
+Esta estrutura funciona de forma parecida com o catalogo_livros, mas para pessoas. O cadastro_usuarios guarda uma "ficha" para cada usuário, identificada pelo CPF. Usar um dicionário torna fácil e rápido adicionar novos usuários e verificar se um CPF já existe no sistema antes de cadastrar.
       
 # Função realizar_emprestimo():
-      * Quais estruturas são usadas e por quê?
-      * Quando um livro é emprestado, primeiro olhamos sua "ficha" no catalogo_livros para ver se ele existe e se tem cópias disponíveis, e então atualizamos essa ficha (diminuindo uma cópia disponível).
-      * Verificamos também no cadastro_usuarios se a pessoa que quer pegar o livro está registrada.
-      * Os detalhes importantes desse empréstimo (qual livro, quem pegou, quando pegou, quando devolver e o status "ativo") são guardados como um novo item (um dicionário) na lista registros_emprestimos. Uma lista é usada para manter esses registros de empréstimo.
-      * Se o livro não estiver disponível, usamos a lista_espera (um dicionário onde cada livro pode ter sua própria fila). O CPF do usuário é adicionado ao final da fila daquele livro, que é um deque (uma lista especial otimizada para funcionar bem como fila).
+## Quais estruturas são usadas e por quê?
+ Quando um livro é emprestado, primeiro olhamos sua "ficha" no catalogo_livros para ver se ele existe e se tem cópias disponíveis, e então atualizamos essa ficha (diminuindo uma cópia disponível).
+Verificamos também no cadastro_usuarios se a pessoa que quer pegar o livro está registrada.
+Os detalhes importantes desse empréstimo (qual livro, quem pegou, quando pegou, quando devolver e o status "ativo") são guardados como um novo item (um dicionário) na lista registros_emprestimos. Uma lista é usada para manter esses registros de empréstimo.
+Se o livro não estiver disponível, usamos a lista_espera (um dicionário onde cada livro pode ter sua própria fila). O CPF do usuário é adicionado ao final da fila daquele livro, que é um deque (uma lista especial otimizada para funcionar bem como fila).
       
 # Função registrar_devolucao():
-      * Como as estruturas ajudam na devolução?
-      * Quando um livro é devolvido, procuramos na lista registros_emprestimos para encontrar qual foi o empréstimo ativo daquele livro para aquela pessoa.
-      * Uma vez encontrado, marcamos esse empréstimo como "devolvido" dentro da lista.
-      * Depois, atualizamos a "ficha" do livro no catalogo_livros, aumentando o número de cópias disponíveis.
-      * Se tinha gente na lista_espera (um dicionário que usa deque para as filas) por aquele livro, avisamos o primeiro da fila que o livro chegou e o removemos da espera.
+## Como as estruturas ajudam na devolução?
+Quando um livro é devolvido, procuramos na lista registros_emprestimos para encontrar qual foi o empréstimo ativo daquele livro para aquela pessoa.
+Uma vez encontrado, marcamos esse empréstimo como "devolvido" dentro da lista.
+Depois, atualizamos a "ficha" do livro no catalogo_livros, aumentando o número de cópias disponíveis.
+Se tinha gente na lista_espera (um dicionário que usa deque para as filas) por aquele livro, avisamos o primeiro da fila que o livro chegou e o removemos da espera.
       
 # Função listar_emprestimos():
-      * Como os empréstimos são listados? Para mostrar os livros que estão atualmente com alguém, a função olha a lista registros_emprestimos, item por item.
-      * Para cada empréstimo que ainda está "ativo", ela pega os detalhes do livro consultando o catalogo_livros (usando o ISBN do empréstimo).
-      * E pega os dados do usuário consultando o cadastro_usuarios (usando o CPF do empréstimo).
-      * Assim, consegue mostrar tudo direitinho: qual livro, com quem está e até quando deve ser devolvido.
+## Como os empréstimos são listados?
+Para mostrar os livros que estão atualmente com alguém, a função olha a lista registros_emprestimos, item por item.
+Para cada empréstimo que ainda está "ativo", ela pega os detalhes do livro consultando o catalogo_livros (usando o ISBN do empréstimo).
+E pega os dados do usuário consultando o cadastro_usuarios (usando o CPF do empréstimo).
+Assim, consegue mostrar tudo direitinho: qual livro, com quem está e até quando deve ser devolvido.
 
 
 # 5. Bloco de Execução Principal ▶️
